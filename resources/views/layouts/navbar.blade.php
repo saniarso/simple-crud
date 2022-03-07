@@ -26,12 +26,6 @@
                             <i class="icon-paragraph-justify3"></i>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="navbar-nav-link sidebar-control sidebar-component-toggle d-none d-md-block">
-                            <i class="icon-drag-left"></i>
-                        </a>
-                    </li>
                 </ul>
 
                 <span class="badge bg-success my-3 my-md-0 ml-md-3 mr-md-auto">{{ config('custom.role.'.Auth::user()->role) }}</span>
@@ -46,8 +40,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-                            <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+                            <a href="{{ route('users.show', $user = Auth::user()->id) }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="dropdown-item"><i
                                     class="icon-switch2"></i> {{ 'Logout' }}

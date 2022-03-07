@@ -24,7 +24,7 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/cetak_pdf', 'UsersController@cetak_pdf')->name('cetak_pdf');
-Route::match(['GET', 'HEAD'], '/user_excel', 'UsersController@user_excel')->name('user_excel');
+Route::get('/user_excel', 'UsersController@user_excel')->name('user_excel');
 
 Route::group(['middleware' => ['role:1']], function() {
     Route::get('/admin_excel', 'UsersController@admin_excel')->name('admin_excel');

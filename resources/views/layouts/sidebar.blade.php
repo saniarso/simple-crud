@@ -74,14 +74,6 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="nav-link">
-                        <i class="icon-cog3"></i>
-                        <span>
-                            Settings
-                        </span>
-                    </a>
-                </li>
                 <!-- /control -->
 
             </ul>
