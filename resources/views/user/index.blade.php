@@ -39,8 +39,9 @@
 
                             @if (in_array(Auth::user()->role, [1]))
                                 <th>Role</th>
-                                <th class="text-center" width="160px">Action</th>
                             @endif
+
+                            <th class="text-center" width="160px">Action</th>
                         </tr>
                     </thead>
                     <tbody>
