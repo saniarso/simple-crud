@@ -29,10 +29,10 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success">Edit</a>
+                        <a href="{{ route('cabang.edit', $cabang->id) }}" class="btn btn-success">Edit</a>
 
                         @if (in_array(Auth::user()->role, [1]))
-                            <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>
+                            <a href="{{ route('cabang.index') }}" class="btn btn-default">Back</a>
                         @endif
                     </form>
                 </div>

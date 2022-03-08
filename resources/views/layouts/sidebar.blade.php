@@ -65,7 +65,7 @@
                     <a href="{{ route('cabang.index') }}" class="nav-link">
                         <i class="icon-copy"></i>
                         <span>
-                            Branch Data
+                            Branches Data
                         </span>
                     </a>
                 </li>
