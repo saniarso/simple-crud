@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Membuat Laporan PDF Dengan DOMPDF Laravel</title>
+	<title>Employees Data</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -13,33 +13,40 @@
 	</style>
 
 	<center>
-		<h5>Daftar Karyawan - CRUD TEST -</h4>
+        @if (in_array(Auth::user()->role, [1]))
+		    <h5>Employees Data -for Admin-</h5>
+        @endif
+        @if (in_array(Auth::user()->role, [2]))
+		    <h5>Employees Data</h5>
+        @endif
 	</center>
 
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>No. HP</th>
+                <th>Address</th>
+
                 @if (in_array(Auth::user()->role, [1]))
+                    <th>Username</th>
                     <th>Role</th>
                 @endif
-
-                <th>Name</th>
-				<th>Email</th>
-				<th>No. HP</th>
-				<th>Address</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($users as $key => $user)
                 <tr>
-                    @if (in_array(Auth::user()->role, [1]))
-                        <td>{{ config('custom.role.' .$user->role) }}</td>
-                    @endif
-
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->no_hp }}</td>
                     <td>{{ $user->address }}</td>
+
+                    @if (in_array(Auth::user()->role, [1]))
+                        <td>{{ $user->username }}</td>
+                        <td>{{ config('custom.role.' .$user->role) }}</td>
+                    @endif
                 </tr>
             @endforeach
 		</tbody>

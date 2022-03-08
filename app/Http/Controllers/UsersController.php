@@ -153,6 +153,14 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+
+        return view('user.delete', compact('user'));
+    }
+
     public function destroy(User $user)
     {
         $user->delete();

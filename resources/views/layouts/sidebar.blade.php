@@ -53,15 +53,6 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
-
-                    <a href="{{ route('users.show', $user = Auth::user()->id) }}" class="nav-link">
-                        <i class="icon-user"></i>
-                        <span>
-                            My Profile
-                        </span>
-                    </a>
-                </li>
                 <!-- /main -->
 
                 <!-- Control -->
