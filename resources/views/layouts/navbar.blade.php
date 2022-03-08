@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-md navbar-light navbar-static">
+<div class="navbar navbar-expand-md navbar-light fixed-top">
     <div class="navbar-brand">
         <a href="/home" class="d-inline-block">
             <img src="{{ asset('global_assets/images/logo_light.png') }}" alt="">
@@ -38,7 +38,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ route('users.show', $user = Auth::user()->id) }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                            <a href="{{ route('users.show', $user = Auth::user()->id) }}" class="dropdown-item nav-link {{ request()->is('users/*') ? 'active' : '' }}"><i class="icon-user-plus"></i> My profile</a>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="dropdown-item"><i
                                     class="icon-switch2"></i> {{ 'Logout' }}

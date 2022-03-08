@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Page header -->
+    <div class="page-header border-bottom-0">
+        <div class="page-header-content header-elements-md-inline">
+            <div class="page-title d-flex">
+                <h4>Employees Data</h4>
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- /page header -->
+
     <div class="content pt-0">
         <div class="card">
-            <div class="card-header header-elements-inline">
-                <h2 class="card-title">Employees Data</h2>
-            </div>
-
             @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>
@@ -20,7 +27,14 @@
 
             <div class="card-body">
                 <div class="text-right">
+                    <a href="{{ url('/cetak_pdf') }}" class="btn btn-default"><i class="icon-file-pdf"></i> Export to .pdf</a>
+
+                    @if (in_array(Auth::user()->role, [2]))
+                        <a href="{{ url('/user_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
+                    @endif
+
                     @if (in_array(Auth::user()->role, [1]))
+                        <a href="{{ url('/admin_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
                         <a class="btn btn-success" href="{{ route('users.create') }}">Add Data</a>
                     @endif
                 </div>
@@ -41,7 +55,7 @@
                                 <th>Role</th>
                             @endif
 
-                            <th class="text-center" width="160px">Action</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,28 +74,11 @@
                                     <td>{{ config('custom.role.' .$user->role) }}</td>
                                 @endif
 
-                                <td class="text-center">
-                                    <div class="list-icons">
-                                        <div class="dropdown">
-                                            <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                                <i class="icon-menu9"></i>
-                                            </a>
+                                <td class="text-center" style="white-space: nowrap">
 
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="{{ url('/cetak_pdf') }}" class="dropdown-item"><i class="icon-file-pdf"></i> Export to .pdf</a>
-
-                                                @if (in_array(Auth::user()->role, [1]))
-                                                    <a href="{{ url('/admin_excel') }}" class="dropdown-item"><i class="icon-file-excel"></i> Export to .xlsx</a>
-                                                @endif
-
-                                                @if (in_array(Auth::user()->role, [2]))
-                                                    <a href="{{ url('/user_excel') }}" class="dropdown-item"><i class="icon-file-excel"></i> Export to .xlsx</a>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     @if (in_array(Auth::user()->role, [1]))
+                                        <a class="btn btn-default" href="{{ route('users.show', $user->id) }}" title="Show"><i class="icon-eye8"></i></a>
                                         <a class="btn btn-default" href="{{ route('users.edit', $user->id) }}" title="Edit"><i class="icon-pencil7"></i></a>
                                         <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('delete', $user->id) }}" title="Delete">
                                             <i class="icon-cross2"></i>
