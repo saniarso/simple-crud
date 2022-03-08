@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('cabang.index') }}" class="nav-link">
+                    <a href="{{ route('cabang.index') }}" class="nav-link {{ request()->is('cabang') ? 'active' : '' }}">
                         <i class="icon-copy"></i>
                         <span>
                             Branches Data
