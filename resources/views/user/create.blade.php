@@ -6,7 +6,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="card" style="width: 30rem;">
                     <div class="card-header">
-                        Add Data
+                        Create Data
                     </div>
 
                     <div class="card-body">
@@ -28,12 +28,10 @@
                                 <input type="text" name="name" class="form-control" id="name" aria-describedby="name"
                                     placeholder="Name">
                             </div>
-                            <div class="form-group form-group-feedback form-group-feedback-right">
+                            <div class="form-group">
+                                <label for="name">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" aria-describedby="username"
-                                placeholder="Username">
-                                <div class="form-control-feedback">
-                                    <i class="icon-user-plus text-muted"></i>
-                                </div>
+                                    placeholder="Username">
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail Address</label>

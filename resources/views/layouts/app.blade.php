@@ -5,7 +5,7 @@
     @include('layouts.head')
 </head>
 
-<body>
+<body class="navbar-top">
 
     <!-- Main navbar -->
     @include('layouts.navbar')
