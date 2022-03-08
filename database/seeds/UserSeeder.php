@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'superadmin@gmail.com',
             'no_hp' => '000000000000',
-            'alamat' => 'Semarang',
+            'address' => 'Semarang',
             'username' => 'superadmin',
             'password' => Hash::make('superadmin'),
             'role' => '1'
