@@ -29,4 +29,7 @@ Route::get('/user_excel', 'UsersController@user_excel')->name('user_excel');
 Route::group(['middleware' => ['role:1']], function() {
     Route::get('/admin_excel', 'UsersController@admin_excel')->name('admin_excel');
     Route::get('users/delete/{id}', 'UsersController@delete')->name('delete');
+    Route::get('cabang/delete/{id}', 'CabangController@delete')->name('delete-cabang');
 });
+
+Route::resource('cabang', 'CabangController');

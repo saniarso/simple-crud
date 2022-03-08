@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">E-mail Address</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" value="{{ old('email') }}" required autocomplete="email"
                                     placeholder="E-Mail Address">
@@ -47,7 +47,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="no_hp">No HP</label>
+                                <label for="no_hp">Phone Number</label>
                                 <input type="number" name="no_hp" class="form-control" id="no_hp" aria-describedby="no_hp"
                                     placeholder="Enter your number phone">
                             </div>

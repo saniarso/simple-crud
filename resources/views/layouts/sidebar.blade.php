@@ -65,6 +65,14 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('cabang.index') }}" class="nav-link">
+                        <i class="icon-copy"></i>
+                        <span>
+                            Branch Data
+                        </span>
+                    </a>
+                </li>
                 <!-- /control -->
 
             </ul>
