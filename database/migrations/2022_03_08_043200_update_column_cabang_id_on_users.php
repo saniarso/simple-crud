@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCabangIdToUsers extends Migration
+class UpdateColumnCabangIdOnUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddCabangIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('cabang_id')->after('address');
+            $table->unsignedBigInteger('cabang_id')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class AddCabangIdToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('cabang_id');
+            $table->unsignedBigInteger('cabang_id')->nullable(false)->change();
         });
     }
 }
