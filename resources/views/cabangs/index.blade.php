@@ -35,7 +35,7 @@
 
                     @if (in_array(Auth::user()->role, [1]))
                         <a href="{{ url('/admin_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
-                        <a class="btn btn-success" href="{{ route('users.create') }}">Add Data</a>
+                        <a class="btn btn-success" href="{{ route('cabang.create') }}">Add Data</a>
                     @endif
                 </div>
 
@@ -56,9 +56,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cabangs as $key => $cabang)
+                        @foreach ($cabangs as $cabang)
                             <tr>
-                                <td>{{ $user->nama_cabang }}</td>
+                                <td>{{ $cabang->nama_cabang }}</td>
 
                                 @if (in_array(Auth::user()->role, [2]))
                                     
@@ -74,7 +74,7 @@
                                     @if (in_array(Auth::user()->role, [1]))
                                         <a class="btn btn-default" href="{{ route('cabang.show', $cabang->id) }}" title="Show"><i class="icon-eye8"></i></a>
                                         <a class="btn btn-default" href="{{ route('cabang.edit', $cabang->id) }}" title="Edit"><i class="icon-pencil7"></i></a>
-                                        <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('delete', $cabang->id) }}" title="Delete">
+                                        <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('delete-cabang', $cabang->id) }}" title="Delete">
                                             <i class="icon-cross2"></i>
                                         </a>
                                     @endif
