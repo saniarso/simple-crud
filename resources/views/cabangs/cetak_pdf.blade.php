@@ -14,10 +14,10 @@
 
 	<center>
         @if (in_array(Auth::user()->role, [1]))
-		    <h5>Employees Data -for Admin-</h5>
+		    <h5>Branches Data -for Admin-</h5>
         @endif
         @if (in_array(Auth::user()->role, [2]))
-		    <h5>Employees Data</h5>
+		    <h5>Branches Data</h5>
         @endif
 	</center>
 

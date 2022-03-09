@@ -109,7 +109,6 @@ class CabangController extends Controller
     {
         $cabang->delete();
 
-        return redirect()->route('users.index')
-            ->with('success', 'Data deleted successfully');
+        return redirect('cabang')->with('success', 'Data deleted successfully');
     }
 }
