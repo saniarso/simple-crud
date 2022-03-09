@@ -21,50 +21,61 @@
                             </div>
                         @endif
 
-                        <form method="post" action="{{ route('users.update', $user->id) }}" id="myForm">
+                        <form method="post" action="{{ route('users.update', @$user->id) }}" id="myForm">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" class="form-control" id="title" aria-describedby="name"
-                                    value="{{ $user->name }}">
+                                    value="{{ @$user->name }}">
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" class="form-control" id="username" aria-describedby="username"
-                                    value="{{ $user->username }}" required autocomplete="username">
+                                    value="{{ @$user->username }}" required autocomplete="username">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 @if (in_array(Auth::user()->role, [1]))
                                     <input type="email" name="email" class="form-control" id="email" aria-describedby="email"
-                                        value="{{ $user->email }}" required autocomplete="email">
+                                        value="{{ @$user->email }}" required autocomplete="email">
                                 @endif
                                 @if (in_array(Auth::user()->role, [2]))
                                     <input type="email" name="email" class="form-control" id="email" aria-describedby="email"
-                                            readonly value="{{ $user->email }}">
+                                            readonly value="{{ @$user->email }}">
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="no_hp">No HP</label>
                                 <input type="number" name="no_hp" class="form-control" id="no_hp" aria-describedby="no_hp"
-                                    value="{{ $user->no_hp }}">
+                                    value="{{ @$user->no_hp }}">
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" name="address" class="form-control" id="address"
-                                    aria-describedby="address" value="{{ $user->address }}">
+                                    aria-describedby="address" value="{{ @$user->address }}">
                             </div>
 
                             @if (in_array(Auth::user()->role, [1]))
                                 <div class="form-group">
-                                    <label for="username">Role</label>
+                                    <label for="role">Role</label>
                                     <select name="role" class="form-control form-control-select2"
                                         data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
                                         require>
                                         <option value="" ></option>
                                         @foreach (config('custom.role') as $key => $value)
-                                            <option value="{{ $key }}" > {{ $value }}</option>
+                                            <option {{ $user->role == $key ? 'selected' : '' }} value="{{ $key }}" > {{ $value }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cabang">Cabang</label>
+                                    <select name="cabang_id" class="form-control form-control-select2"
+                                        data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
+                                        require>
+                                        @foreach ($cabangs as $cabang)
+                                            <option {{ $user->cabang_id == $cabang->id ? 'selected' : '' }} value="{{ $cabang->id }}" > {{ $cabang->nama_cabang }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -42,10 +42,10 @@
                 <table class="table datatable-basic table-bordered table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Username</th>
                             <th>Name</th>
+                            <th>Cabang</th>
+                            <th>Username</th>
                             <th>Email</th>
-                            <th>No HP</th>
 
                             @if (in_array(Auth::user()->role, [2]))
                                 <th>Address</th>
@@ -59,28 +59,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $key => $user)
+                        @foreach ($users as $user)
                             <tr>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->no_hp }}</td>
+                                <td>{{ @$user->name }}</td>
+                                <td>{{ @$user->cabang->nama_cabang }}</td>
+                                <td>{{ @$user->username }}</td>
+                                <td>{{ @$user->email }}</td>
 
                                 @if (in_array(Auth::user()->role, [2]))
-                                    <td>{{ $user->address }}</td>
+                                    <td>{{ @$user->address }}</td>
                                 @endif
 
                                 @if (in_array(Auth::user()->role, [1]))
-                                    <td>{{ config('custom.role.' .$user->role) }}</td>
+                                    <td>{{ config('custom.role.' .@$user->role) }}</td>
                                 @endif
 
                                 <td class="text-center" style="white-space: nowrap">
 
 
                                     @if (in_array(Auth::user()->role, [1]))
-                                        <a class="btn btn-default" href="{{ route('users.show', $user->id) }}" title="Show"><i class="icon-eye8"></i></a>
-                                        <a class="btn btn-default" href="{{ route('users.edit', $user->id) }}" title="Edit"><i class="icon-pencil7"></i></a>
-                                        <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('delete', $user->id) }}" title="Delete">
+                                        <a class="btn btn-default" href="{{ route('users.show', @$user->id) }}" title="Show"><i class="icon-eye8"></i></a>
+                                        <a class="btn btn-default" href="{{ route('users.edit', @$user->id) }}" title="Edit"><i class="icon-pencil7"></i></a>
+                                        <a class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#smallModal" data-attr="{{ route('delete', @$user->id) }}" title="Delete">
                                             <i class="icon-cross2"></i>
                                         </a>
                                     @endif

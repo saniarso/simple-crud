@@ -69,6 +69,16 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="cabang">Cabang</label>
+                                <select name="cabang_id" class="form-control form-control-select2"
+                                    data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
+                                    require>
+                                    @foreach ($cabangs as $cabang)
+                                        <option value="{{ $cabang->id }}" > {{ $cabang->nama_cabang }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>
                         </form>

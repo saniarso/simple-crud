@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Cabang;
 use Illuminate\Http\Request;
 
 use PDF;
@@ -27,6 +28,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
+        //dd($users);
         return view('user.index', compact('users'));
     }
 
@@ -54,7 +56,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $cabangs = Cabang::all();
+        return view('user.create', compact('cabangs'));
     }
 
     /**
@@ -111,7 +114,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        $cabangs = Cabang::all();
+        return view('user.edit', compact('user', 'cabangs'));
     }
 
     /**
