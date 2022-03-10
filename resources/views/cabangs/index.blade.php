@@ -27,14 +27,10 @@
 
             <div class="card-body">
                 <div class="text-right">
-                    <a href="{{ url('/cetak_pdf') }}" class="btn btn-default"><i class="icon-file-pdf"></i> Export to .pdf</a>
-
-                    @if (in_array(Auth::user()->role, [2]))
-                        <a href="{{ url('/user_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
-                    @endif
+                    <a href="{{ url('/pdf_cabang') }}" class="btn btn-default"><i class="icon-file-pdf"></i> Export to .pdf</a>
 
                     @if (in_array(Auth::user()->role, [1]))
-                        <a href="{{ url('/admin_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
+                        <a href="{{ url('/cabang_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
                         <a class="btn btn-success" href="{{ route('cabang.create') }}">Add Data</a>
                     @endif
                 </div>
@@ -45,11 +41,11 @@
                             <th class="text-center">Nama Cabang</th>
 
                             @if (in_array(Auth::user()->role, [2]))
-                                
+
                             @endif
 
                             @if (in_array(Auth::user()->role, [1]))
-                                
+
                             @endif
 
                             <th class="text-center">Action</th>
@@ -61,11 +57,11 @@
                                 <td>{{ $cabang->nama_cabang }}</td>
 
                                 @if (in_array(Auth::user()->role, [2]))
-                                    
+
                                 @endif
 
                                 @if (in_array(Auth::user()->role, [1]))
-                                    
+
                                 @endif
 
                                 <td class="text-center" style="white-space: nowrap">
@@ -157,7 +153,7 @@
                 // Setting datatable defaults
                 $.extend( $.fn.dataTable.defaults, {
                     autoWidth: false,
-                    columnDefs: [{ 
+                    columnDefs: [{
                         orderable: false,
                         width: 100,
                         targets: [ 1 ]

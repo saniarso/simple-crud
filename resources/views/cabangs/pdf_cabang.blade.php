@@ -24,21 +24,29 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-                <th>Nama Cabang</th>
-
                 @if (in_array(Auth::user()->role, [1]))
-                    
+                    <th width="50px" class="text-center">Id</th>
                 @endif
+
+                @if (in_array(Auth::user()->role, [2]))
+                    <th width="50px" class="text-center">No.</th>
+                @endif
+
+                <th>Nama Cabang</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($cabangs as $key => $cabang)
                 <tr>
-                    <td>{{ $cabang->nama_cabang }}</td>
-
                     @if (in_array(Auth::user()->role, [1]))
-                        
+                        <td class="text-center">{{ $cabang->id }}</td>
                     @endif
+
+                    @if (in_array(Auth::user()->role, [2]))
+                        <td class="text-center">{{ $key+1 }}</td>
+                    @endif
+
+                    <td>{{ $cabang->nama_cabang }}</td>
                 </tr>
             @endforeach
 		</tbody>
