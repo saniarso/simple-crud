@@ -7,11 +7,9 @@
 
 <body class="navbar-top">
 
-    <!-- Main navbar -->
     @include('layouts.navbar')
 
     <div class="page-content">
-
         @if (Route::has('login'))
             @auth
                 <!-- Main sidebar -->
@@ -29,8 +27,6 @@
             <!-- /footer -->
         </div>
     </div>
-
-    @yield('js')
 
 </body>
 

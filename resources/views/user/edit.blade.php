@@ -74,6 +74,7 @@
                                     <select name="cabang_id" class="form-control form-control-select2"
                                         data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
                                         require>
+                                        <option value="" ></option>
                                         @foreach ($cabangs as $cabang)
                                             <option {{ $user->cabang_id == $cabang->id ? 'selected' : '' }} value="{{ $cabang->id }}" > {{ $cabang->nama_cabang }}</option>
                                         @endforeach

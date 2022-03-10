@@ -39,15 +39,6 @@
                     <thead>
                         <tr>
                             <th class="text-center">Nama Cabang</th>
-
-                            @if (in_array(Auth::user()->role, [2]))
-
-                            @endif
-
-                            @if (in_array(Auth::user()->role, [1]))
-
-                            @endif
-
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -56,17 +47,7 @@
                             <tr>
                                 <td>{{ $cabang->nama_cabang }}</td>
 
-                                @if (in_array(Auth::user()->role, [2]))
-
-                                @endif
-
-                                @if (in_array(Auth::user()->role, [1]))
-
-                                @endif
-
                                 <td class="text-center" style="white-space: nowrap">
-
-
                                     @if (in_array(Auth::user()->role, [1]))
                                         <a class="btn btn-default" href="{{ route('cabang.show', $cabang->id) }}" title="Show"><i class="icon-eye8"></i></a>
                                         <a class="btn btn-default" href="{{ route('cabang.edit', $cabang->id) }}" title="Edit"><i class="icon-pencil7"></i></a>
@@ -133,7 +114,6 @@
 
     <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
 
     <script>

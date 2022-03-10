@@ -110,6 +110,11 @@
 @endsection
 
 @section('js')
+
+    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
+
     <script>
         // display a modal (small modal)
         $(document).on('click', '#smallButton', function(event) {
@@ -137,11 +142,6 @@
             })
         });
     </script>
-
-    <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
 
     <script>
         var DatatableBasic = function() {
@@ -176,14 +176,6 @@
 
                 // Basic datatable
                 $('.datatable-basic').DataTable();
-
-                // Alternative pagination
-                $('.datatable-pagination').DataTable({
-                    pagingType: "simple",
-                    language: {
-                        paginate: {'next': $('html').attr('dir') == 'rtl' ? 'Next &larr;' : 'Next &rarr;', 'previous': $('html').attr('dir') == 'rtl' ? '&rarr; Prev' : '&larr; Prev'}
-                    }
-                });
 
                 // Datatable with saving state
                 $('.datatable-save-state').DataTable({

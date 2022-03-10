@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
-use App\Exports\CabangExport;
 
 class UsersController extends Controller
 {
@@ -29,20 +28,19 @@ class UsersController extends Controller
     public function index()
     {
         if (Auth::user()->role == 2){
-            $users = User::all()->where('role', '=', '2');
-            //dd($users);
-            return view('user.index', compact('users'));
+            //sesuai cabang
+            $users = User::all()->where('cabang_id', '=', (Auth::user()->cabang_id));
         }
         else{
             $users = User::all();
             //dd($users);
-            return view('user.index', compact('users'));
         }
+        return view('user.index', compact('users'));
     }
     public function cetak_pdf()
     {
         if (Auth::user()->role == 2){
-            $users = User::all()->where('role', '=', '2')->sortBy('name');
+            $users = User::all()->where('cabang_id', '=', (Auth::user()->cabang_id))->sortBy('name');
 
             $pdf = PDF::loadview('user.pdf_user',['users'=>$users]);
             return $pdf->stream('Employees-Data.pdf');
@@ -65,10 +63,6 @@ class UsersController extends Controller
         }
 	}
 
-    public function cabang_excel()
-	{
-        return Excel::download(new CabangExport, 'Cabangs-Data.xlsx');
-	}
     /**
      * Show the form for creating a new resource.
      *
