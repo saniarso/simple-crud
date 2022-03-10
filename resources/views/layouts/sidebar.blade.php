@@ -80,3 +80,6 @@
 
 
 </div>
+@section('js')
+    
+@endsection

@@ -37,3 +37,43 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+
+    <script>
+        var InputsBasic = function () {
+
+        //
+        // Setup module components
+        //
+
+        // Uniform
+        var _componentUniform = function() {
+            if (!$().uniform) {
+                console.warn('Warning - uniform.min.js is not loaded.');
+                return;
+            }
+
+            // File input
+            $('.form-control-uniform').uniform();
+
+            // Custom select
+            $('.form-control-uniform-custom').uniform({
+                fileButtonClass: 'action btn bg-blue',
+                selectClass: 'uniform-select bg-pink-400 border-pink-400'
+            });
+        };
+
+        //
+        // Return objects assigned to module
+        //
+
+        return {
+            init: function() {
+                _componentUniform();
+            }
+        }
+        }();
+    </script>
+@endsection

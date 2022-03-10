@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Cabang;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use PDF;
@@ -27,11 +28,17 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::all();
-        //dd($users);
-        return view('user.index', compact('users'));
+        if (Auth::user()->role == 2){
+            $users = User::all()->where('role', '=', '2');
+            //dd($users);
+            return view('user.index', compact('users'));
+        }
+        else{
+            $users = User::all();
+            //dd($users);
+            return view('user.index', compact('users'));
+        }
     }
-
     public function cetak_pdf()
     {
     	$users = User::all()->sortBy('name');

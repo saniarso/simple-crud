@@ -24,29 +24,5 @@
 <!-- /core JS files -->
 
 <!-- Theme JS files -->
-<script src="{{ asset('global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
-<script src="{{ asset('global_assets/js/plugins/ui/perfect_scrollbar.min.js') }}"></script>
 
-<script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_pages/dashboard.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_pages/layout_fixed_sidebar_custom.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_pages/login.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/streamgraph.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/sparklines.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/lines.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/areas.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/donuts.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/bars.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/progress.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/heatmaps.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/pies.js') }}"></script>
-<script src="{{ asset('global_assets/js/demo_charts/pages/dashboard/dark/bullets.js') }}"></script>
 <!-- /theme JS files -->
