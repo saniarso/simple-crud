@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cabang;
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CabangExport;
 
 class CabangController extends Controller
 {
@@ -18,6 +21,19 @@ class CabangController extends Controller
 
         return view('cabangs.index', $results);
     }
+
+    public function cetak_pdf()
+    {
+    	$cabangs = Cabang::all()->sortBy('name');
+
+    	$pdf = PDF::loadview('cabangs.pdf_cabang',['cabangs'=>$cabangs]);
+    	return $pdf->stream('daftar-cabang-pdf');
+    }
+
+    public function cabang_excel()
+	{
+		return Excel::download(new CabangExport, 'Daftar-Cabang.xlsx');
+	}
 
     /**
      * Show the form for creating a new resource.

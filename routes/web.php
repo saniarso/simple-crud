@@ -24,9 +24,17 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 
-Route::get('/cetak_pdf', 'UsersController@cetak_pdf')->name('cetak_pdf');
+Route::get('/pdf_cabang', 'CabangController@cetak_pdf')->name('pdf_cabang');
+
+Route::get('/pdf_user', 'UsersController@cetak_pdf')->name('pdf_user');
 Route::get('/user_excel', 'UsersController@user_excel')->name('user_excel');
 
+
+Route::group(['middleware' => ['role:1']], function() {
+    Route::get('users/delete/{id}', 'UsersController@delete')->name('delete');
+    Route::get('cabang/delete/{id}', 'CabangController@delete')->name('delete-cabang');
+    Route::get('/cabang_excel', 'UsersController@cabang_excel')->name('cabang_excel');
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:1']], function() {

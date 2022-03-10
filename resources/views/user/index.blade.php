@@ -27,14 +27,10 @@
 
             <div class="card-body">
                 <div class="text-right">
-                    <a href="{{ url('/cetak_pdf') }}" class="btn btn-default"><i class="icon-file-pdf"></i> Export to .pdf</a>
-
-                    @if (in_array(Auth::user()->role, [2]))
-                        <a href="{{ url('/user_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
-                    @endif
+                    <a href="{{ url('/pdf_user') }}" class="btn btn-default"><i class="icon-file-pdf"></i> Export to .pdf</a>
+                    <a href="{{ url('/user_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
 
                     @if (in_array(Auth::user()->role, [1]))
-                        <a href="{{ url('/admin_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
                         <a class="btn btn-success" href="{{ route('users.create') }}">Add Data</a>
                     @endif
                 </div>
@@ -141,7 +137,7 @@
             })
         });
     </script>
-    
+
     <script src="{{ asset('global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/datatables_basic.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
@@ -164,7 +160,7 @@
                 // Setting datatable defaults
                 $.extend( $.fn.dataTable.defaults, {
                     autoWidth: false,
-                    columnDefs: [{ 
+                    columnDefs: [{
                         orderable: false,
                         width: 100,
                         targets: [ 5 ]

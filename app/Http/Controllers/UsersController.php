@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
-use App\Exports\AdminExport;
+use App\Exports\CabangExport;
 
 class UsersController extends Controller
 {
@@ -41,20 +41,33 @@ class UsersController extends Controller
     }
     public function cetak_pdf()
     {
-    	$users = User::all()->sortBy('name');
+        if (Auth::user()->role == 2){
+            $users = User::all()->where('role', '=', '2')->sortBy('name');
 
-    	$pdf = PDF::loadview('user.cetak_pdf',['users'=>$users]);
-    	return $pdf->stream('laporan-user-pdf');
+            $pdf = PDF::loadview('user.pdf_user',['users'=>$users]);
+            return $pdf->stream('Employees-Data.pdf');
+        }
+        else{
+            $users = User::all()->sortBy('name');
+
+            $pdf = PDF::loadview('user.pdf_user',['users'=>$users]);
+            return $pdf->stream('Users Data for ADMIN.pdf');
+        }
     }
 
     public function user_excel()
 	{
-		return Excel::download(new UsersExport, 'Employees.xlsx');
+        if (Auth::user()->role == 2){
+            return Excel::download(new UsersExport, 'Employees-Data.xlsx');
+        }
+        else{
+            return Excel::download(new UsersExport, 'Users-Data(ADMIN).xlsx');
+        }
 	}
 
-    public function admin_excel()
+    public function cabang_excel()
 	{
-		return Excel::download(new AdminExport, 'Users.xlsx');
+        return Excel::download(new CabangExport, 'Cabangs-Data.xlsx');
 	}
     /**
      * Show the form for creating a new resource.
@@ -153,9 +166,14 @@ class UsersController extends Controller
         }
 
         $user->update($data);
-
-        return view('user.detail', compact('user'))
-            ->with('success', 'Data updated successfully');
+        if (Auth::user()->role == 1){
+            return redirect('/users')
+                ->with('success', 'Data updated successfully');
+        }
+        else{
+            return view('user.detail', compact('user'))
+                ->with('success', 'Your data updated successfully');
+        }
     }
 
     /**

@@ -2,16 +2,16 @@
 
 namespace App\Exports;
 
-use App\User;
+use App\Cabang;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class AdminExport implements FromCollection
+class CabangExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return User::select('role','username','name', 'email', 'no_hp', 'address')->get();
+        return Cabang::select('id', 'nama_cabang')->get()->sortBy('id');
     }
 }
