@@ -167,7 +167,7 @@
                     columnDefs: [{
                         orderable: false,
                         width: 100,
-                        @if (in_array(Auth::user()->role, [1]))
+                        @if (\Auth::user()->role == 1))
                             targets: [ 5 ]
                         @endif
                     }],
