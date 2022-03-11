@@ -170,6 +170,12 @@
                         @if (\Auth::user()->role == 1))
                             targets: [ 5 ]
                         @endif
+                    },
+                    {
+                        @if (\Auth::user()->role == 2))
+                            visible: false,
+                            targets: [ 5 ]
+                        @endif
                     }],
                     dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                     language: {
