@@ -5,8 +5,12 @@
     <div class="page-header border-bottom-0">
         <div class="page-header-content header-elements-md-inline">
             <div class="page-title d-flex">
-                <h4>Employees Data</h4>
-                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                @if (in_array(Auth::user()->role, [2]))
+                    <h4>Employees Data - {{ Auth::user()->cabang->nama_cabang }}</h4>
+                @endif
+                @if (in_array(Auth::user()->role, [1]))
+                    <h4>Employees Data</h4>
+                @endif
             </div>
         </div>
     </div>
@@ -49,9 +53,9 @@
 
                             @if (in_array(Auth::user()->role, [1]))
                                 <th>Role</th>
+                                <th class="text-center">Action</th>
                             @endif
 
-                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -28,9 +28,9 @@
             <div class="card-body">
                 <div class="text-right">
                     <a href="{{ url('/pdf_cabang') }}" class="btn btn-default"><i class="icon-file-pdf"></i> Export to .pdf</a>
+                    <a href="{{ url('/cabang_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
 
                     @if (in_array(Auth::user()->role, [1]))
-                        <a href="{{ url('/cabang_excel') }}" class="btn btn-default"><i class="icon-file-excel"></i> Export to .xlsx</a>
                         <a class="btn btn-success" href="{{ route('cabang.create') }}">Add Data</a>
                     @endif
                 </div>
@@ -39,7 +39,9 @@
                     <thead>
                         <tr>
                             <th class="text-center">Nama Cabang</th>
-                            <th class="text-center">Action</th>
+                            @if (in_array(Auth::user()->role, [1]))
+                                <th class="text-center">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
