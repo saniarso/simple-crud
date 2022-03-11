@@ -103,7 +103,7 @@ class UsersController extends Controller
 
         if($findUser){
             return redirect()->back()
-            ->with('error','Username or email already exist');
+            ->with('errors','Username or email already exist');
         }
 
         if($request->get('password')!=''){

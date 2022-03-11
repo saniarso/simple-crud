@@ -30,9 +30,16 @@
                                     value="{{ @$user->name }}">
                             </div>
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" class="form-control" id="username" aria-describedby="username"
-                                    value="{{ @$user->username }}" required autocomplete="username">
+                                @if (in_array(Auth::user()->role, [1]))
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="form-control" id="username" aria-describedby="username"
+                                        value="{{ @$user->username }}" required autocomplete="username">
+                                @endif
+                                @if (in_array(Auth::user()->role, [2]))
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="form-control" id="username" aria-describedby="username"
+                                        readonly value="{{ @$user->username }}" required autocomplete="username">
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -42,7 +49,7 @@
                                 @endif
                                 @if (in_array(Auth::user()->role, [2]))
                                     <input type="email" name="email" class="form-control" id="email" aria-describedby="email"
-                                            readonly value="{{ @$user->email }}">
+                                        readonly value="{{ @$user->email }}">
                                 @endif
                             </div>
                             <div class="form-group">

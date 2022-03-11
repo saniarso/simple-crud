@@ -43,16 +43,17 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Cabang</th>
-                            <th>Username</th>
                             <th>Email</th>
 
                             @if (in_array(Auth::user()->role, [2]))
                                 <th>Address</th>
+                                <th>No. HP</th>
                             @endif
 
                             @if (in_array(Auth::user()->role, [1]))
+                                <th>Username</th>
                                 <th>Role</th>
+                                <th>Cabang</th>
                                 <th class="text-center">Action</th>
                             @endif
 
@@ -62,16 +63,17 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ @$user->name }}</td>
-                                <td>{{ @$user->cabang->nama_cabang }}</td>
-                                <td>{{ @$user->username }}</td>
                                 <td>{{ @$user->email }}</td>
 
                                 @if (in_array(Auth::user()->role, [2]))
                                     <td>{{ @$user->address }}</td>
+                                    <td>{{ @$user->no_hp }}</td>
                                 @endif
 
                                 @if (in_array(Auth::user()->role, [1]))
+                                    <td>{{ @$user->username }}</td>
                                     <td>{{ config('custom.role.' .@$user->role) }}</td>
+                                    <td>{{ @$user->cabang->nama_cabang }}</td>
                                 @endif
 
                                 <td class="text-center" style="white-space: nowrap">
@@ -166,15 +168,19 @@
                     autoWidth: false,
                     columnDefs: [{
                         orderable: false,
-                        width: 100,
-                        @if (\Auth::user()->role == 1))
+                        @if (\Auth::user()->role == 1)
+                            width: 100,
                             targets: [ 5 ]
+                        @endif
+                        @if (\Auth::user()->role == 2)
+                            autoWidth: true,
+                            targets: [ 2, 3 ]
                         @endif
                     },
                     {
-                        @if (\Auth::user()->role == 2))
+                        @if (\Auth::user()->role == 2)
                             visible: false,
-                            targets: [ 5 ]
+                            targets: [ 4 ]
                         @endif
                     }],
                     dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',

@@ -138,7 +138,15 @@
                     columnDefs: [{
                         orderable: false,
                         width: 100,
-                        targets: [ 1 ]
+                        @if (\Auth::user()->role == 1)
+                            targets: [ 1 ]
+                        @endif
+                    },
+                    {
+                        @if (\Auth::user()->role == 2)
+                            visible: false,
+                            targets: [ 1 ]
+                        @endif
                     }],
                     dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                     language: {
