@@ -8,7 +8,7 @@
 
     <div class="navbar-collapse collapse" id="navbar-footer">
         <span class="navbar-text">
-            2022 &copy; <a href="/home">CRUD Test</a> by <a href="#">MemeClub</a>
+            2022 &copy; <a href="/home">CRUD Test</a> by <a href="https://twitter.com/memefess">MemeClub</a>
         </span>
 
         <ul class="navbar-nav ml-lg-auto">

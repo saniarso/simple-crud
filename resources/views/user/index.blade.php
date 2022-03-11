@@ -167,7 +167,9 @@
                     columnDefs: [{
                         orderable: false,
                         width: 100,
-                        targets: [ 5 ]
+                        @if (in_array(Auth::user()->role, [1]))
+                            targets: [ 5 ]
+                        @endif
                     }],
                     dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                     language: {
