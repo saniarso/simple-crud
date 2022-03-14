@@ -35,5 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('users/delete/{id}', 'UsersController@delete')->name('delete');
         Route::get('cabang/delete/{id}', 'CabangController@delete')->name('delete-cabang');
         Route::resource('cabang', 'CabangController');
+        Route::get('users/create', 'UsersController@create')->name('users.create');
+        Route::post('users', 'UsersController@store')->name('users.store');
     });
 });

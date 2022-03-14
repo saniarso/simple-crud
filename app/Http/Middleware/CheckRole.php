@@ -25,7 +25,7 @@ class CheckRole
 
         if(!in_array(Auth::user()->role, $role)){
             // dd($role);
-            return redirect('home');
+            return redirect()->back();
         }
         return $next($request);
 
