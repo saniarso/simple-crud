@@ -96,7 +96,12 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
+                            @if (in_array(Auth::user()->role, [1]))
+                                <a href="{{ url('/users') }}" class="btn btn-default">Back</a>
+                            @endif
+                            @if (in_array(Auth::user()->role, [2]))
+                                <a href="{{ route('users.show', Auth::user()->id) }}" class="btn btn-default">Back</a>
+                            @endif
                         </form>
                     </div>
                 </div>
