@@ -34,7 +34,7 @@
 
                 @if (in_array(Auth::user()->role, [1]))
                     <th>Username</th>
-                    <th>Cabang</th>
+                    <th width="50px">Cabang</th>
                     <th>Role</th>
                 @endif
 			</tr>

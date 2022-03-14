@@ -40,7 +40,7 @@ class UsersController extends Controller
     public function cetak_pdf()
     {
         if (Auth::user()->role == 2){
-            $users = User::all()->where('cabang_id', '=', (Auth::user()->cabang_id))->sortBy('name');
+            $users = User::all()->where('role', '=', '2')->where('cabang_id', '=', (Auth::user()->cabang_id))->sortBy('name');
 
             $pdf = PDF::loadview('user.pdf_user',['users'=>$users]);
             return $pdf->stream('Employees-Data.pdf');
@@ -97,7 +97,8 @@ class UsersController extends Controller
         $data = $request->except(['_token', '_method']);
 
         $findUser = User::where(function ($q) use($request) {
-            $q->where('username', $request->get('username'));
+            $q->where('username', $request->get('username'))
+            ->orWhere('email', $request->get('email'));
         })->where('deleted_at', null)->first();
 
         if($findUser){
@@ -174,7 +175,7 @@ class UsersController extends Controller
                 ->with('success', 'Data updated successfully');
         }
         else{
-            return view('user.detail', compact('user'))
+            return redirect()->route('users.show', Auth::user()->id)
                 ->with('success', 'Your data updated successfully');
         }
     }

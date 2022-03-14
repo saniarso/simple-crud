@@ -1,26 +1,25 @@
-<center>
-    @if (in_array(Auth::user()->role, [1]))
-        <h5>- Users Data for Admin -</h5>
-    @endif
-    @if (in_array(Auth::user()->role, [2]))
-        <h5>Employees Data - Cabang {{ Auth::user()->cabang->nama_cabang }} - </h5>
-    @endif
-</center>
+@if (in_array(Auth::user()->role, [1]))
+    <h3>Users Data for Admin</h3>
+@endif
+@if (in_array(Auth::user()->role, [2]))
+    <h3>Employees Data - Cabang {{ Auth::user()->cabang->nama_cabang }}</h3>
+@endif
+
 <table>
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>No. HP</th>
+            <th width="200px"><b>Name</b></th>
+            <th width="200px"><b>Email</b></th>
+            <th width="100px"><b>No. HP</b></th>
 
             @if (in_array(Auth::user()->role, [2]))
-                <th>Address</th>
+                <th  width="300px"><b>Address</b></th>
             @endif
 
             @if (in_array(Auth::user()->role, [1]))
-                <th>Username</th>
-                <th>Cabang</th>
-                <th>Role</th>
+                <th width="100px"><b>Username</b></th>
+                <th width="100px"><b>Cabang</b></th>
+                <th width="50px"><b>Role</b></th>
             @endif
         </tr>
     </thead>
@@ -43,4 +42,8 @@
             </tr>
         @endforeach
     </tbody>
+<<<<<<< HEAD
 </table>
+=======
+</table>
+>>>>>>> 01bb11df7d5408cc11ca768f53a01a44e911e169

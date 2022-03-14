@@ -14,14 +14,16 @@ class UsersExport implements FromView
     */
     public function view(): View
     {
-        if (Auth::user()->role == 2){
+        if (Auth::user()->role == 1)
+        {
             return view('user.excel_user', [
-                'users' => User::select('cabang_id', 'name', 'email', 'no_hp', 'address')->where('cabang_id', '=', (Auth::user()->cabang_id))->get()->sortBy('name')
+                'users' => User::all()
             ]);
         }
-        else{
+        else
+        {
             return view('user.excel_user', [
-                'users' => User::select('name', 'email', 'no_hp', 'address', 'username', 'cabang_id', 'role')->get()->sortBy('name')
+                'users' => User::all()->where('role', '=', '2')->where('cabang_id', '=', (Auth::user()->cabang_id))
             ]);
         }
     }

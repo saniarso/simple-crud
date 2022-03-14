@@ -13,31 +13,20 @@
 	</style>
 
 	<center>
-        @if (in_array(Auth::user()->role, [1]))
-		    <h5>Branches Data -for Admin-</h5>
-        @endif
-        @if (in_array(Auth::user()->role, [2]))
-		    <h5>Branches Data</h5>
-        @endif
+        <h5>Branches Data</h5>
 	</center>
 
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-                @if (in_array(Auth::user()->role, [1]))
-                    <th width="50px" class="text-center">Id</th>
-                @endif
-
+                <th width="50px" class="text-center">Id</th>
                 <th>Nama Cabang</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($cabangs as $key => $cabang)
                 <tr>
-                    @if (in_array(Auth::user()->role, [1]))
-                        <td class="text-center">{{ $cabang->id }}</td>
-                    @endif
-
+                    <td class="text-center">{{ $cabang->id }}</td>
                     <td>{{ $cabang->nama_cabang }}</td>
                 </tr>
             @endforeach
