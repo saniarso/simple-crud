@@ -97,8 +97,7 @@ class UsersController extends Controller
         $data = $request->except(['_token', '_method']);
 
         $findUser = User::where(function ($q) use($request) {
-            $q->where('username', $request->get('username'))
-            ->orWhere('email', $request->get('email'));
+            $q->where('username', $request->get('username'));
         })->where('deleted_at', null)->first();
 
         if($findUser){
