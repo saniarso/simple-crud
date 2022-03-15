@@ -18,7 +18,14 @@
                             </div>
 
                             <div class="form-group form-group-feedback form-group-feedback-right">
-                                <input id="username" type="text" class="form-control" placeholder="Username" autofocus>
+                                <input id="username" type="text" 
+                                    class="form-control @error('username') is-invalid @enderror" name="username" 
+                                    placeholder="Username" autofocus>
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="form-control-feedback">
                                     <i class="icon-user-plus text-muted"></i>
                                 </div>
@@ -27,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group form-group-feedback form-group-feedback-right">
-                                        <input id="name" type="text" class="form-control" placeholder="Name">
+                                        <input id="name" type="text" name="name" class="form-control" placeholder="Name">
                                         <div class="form-control-feedback">
                                             <i class="icon-user text-muted"></i>
                                         </div>
@@ -54,7 +61,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group form-group-feedback form-group-feedback-right">
-                                        <input id="address" type="text" class="form-control" placeholder="Address"
+                                        <input id="address" type="text" name="address" class="form-control" placeholder="Address"
                                             autofocus>
                                         <div class="form-control-feedback">
                                             <i class="icon-user text-muted"></i>
@@ -63,7 +70,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group form-group-feedback form-group-feedback-right">
-                                        <input id="no_hp" type="number" class="form-control" placeholder="Number Phone"
+                                        <input id="no_hp" type="number" name="no_hp" class="form-control" placeholder="Number Phone"
                                             autofocus>
                                         <div class="form-control-feedback">
                                             <i class="icon-user text-muted"></i>
