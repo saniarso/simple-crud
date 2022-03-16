@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
+Route::post('login', 'API\ApiUserController@login');
+Route::post('register', 'API\ApiUserController@register');
 
 Route::group(['middleware' => 'auth:api'], function (){
-    Route::post('details', 'API\UserController@details');
-    Route::get('users', 'API\UserController@index');
-    Route::get('logout', 'API\UserController@logout');
+    Route::post('details', 'API\ApiUserController@details');
+    Route::get('users', 'API\ApiUserController@index');
+    Route::get('logout', 'API\ApiUserController@logout');
 });

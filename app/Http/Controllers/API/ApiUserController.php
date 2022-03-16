@@ -7,16 +7,30 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class ApiUserController extends Controller
 {
     public $successStatus = 200;
 
-    public function login()
+    public function login(Request $request)
     {
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
-            $user = Auth::user();
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        if(auth()->attempt($credentials)){
+            $user = auth()->user();
 
-            $tokenresult = $user->createToken('nApp');
+            $data = [
+                'Name' => $user->name,
+                'E-Mail Address' => $user->email,
+                'Username' => $user->username,
+                'Phone Number' => $user->no_hp,
+                'Address' => $user->address,
+                'Cabang_ID' => $user->cabang_id,
+                'Role' => $user->role,
+            ];
+
+            $tokenresult = $user->createToken('Laravel Passport');
             $token = $tokenresult->token;
 
             $token->save();
@@ -25,7 +39,7 @@ class UserController extends Controller
                 'code' => $this->successStatus,
                 'message' => 'Success',
                 'data' => [
-                    'User' => $user,
+                    'User' => $data,
                     'Token' => $tokenresult->accessToken
                 ]
             ]);
@@ -98,12 +112,13 @@ class UserController extends Controller
         return response([
             'code' => $this->successStatus,
             'message' => 'Success',
+            'data' => 'Successfully Logged Out'
         ]);
     }
 
     public function details()
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $data = [
             'Name' => $user->name,
             'E-Mail Address' => $user->email,
