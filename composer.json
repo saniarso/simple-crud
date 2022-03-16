@@ -13,6 +13,7 @@
         "doctrine/dbal": "2.6",
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
+        "laravel/passport": "*",
         "laravel/tinker": "^2.5",
         "laravel/ui": "*",
         "maatwebsite/excel": "^3.1"
