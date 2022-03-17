@@ -20,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'API\ApiUserController@login');
 Route::post('register', 'API\ApiUserController@register');
+Route::post('cabang', 'API\ApiCabangController@cabang');
 
 Route::group(['middleware' => 'auth:api'], function (){
     Route::get('logout', 'API\ApiUserController@logout');
-    Route::post('details/{id}', 'API\ApiUserController@details');
-    Route::get('getusers', 'API\ApiUserController@index');
-    Route::put('update/{id}', 'API\ApiUserController@update');
+    Route::post('create_cabang', 'API\ApiCabangController@create_cabang');
+    Route::post('update_cabang', 'API\ApiCabangController@update_cabang');
+    Route::delete('delete_cabang', 'API\ApiCabangController@delete_cabang');
 });
