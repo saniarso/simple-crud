@@ -156,7 +156,7 @@ class UsersController extends Controller
             'username'=>'required',
             'email'=>'required',
             'no_hp'=>'required',
-            'address'=>'required'
+            'address'=>'required',
         ]);
 
         $data = $request->except(['_token', '_method', 'password', 'role']);

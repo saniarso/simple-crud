@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiUserController extends Controller
 {
-    public $successStatus = 200;
-
     public function login(Request $request)
     {
         $credentials = [
@@ -36,7 +34,7 @@ class ApiUserController extends Controller
             $token->save();
 
             return response([
-                'code' => $this->successStatus,
+                'code' => 200,
                 'message' => 'Success',
                 'data' => [
                     'User' => $data,
@@ -46,7 +44,11 @@ class ApiUserController extends Controller
         }
         else
         {
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response([
+                'code' => 400,
+                'message' => 'Success',
+                'data' => 'Email or password does not match our credentials'
+            ]);
         }
     }
     
@@ -75,7 +77,8 @@ class ApiUserController extends Controller
             // ->with('error','Username or email already exist');
             return response([
                 'code' => 400,
-                'message' => 'Username or email already exist'
+                'message' => 'Error',
+                'data' => 'Username or email already exist'
             ]);
         }
 
@@ -99,7 +102,7 @@ class ApiUserController extends Controller
         // return redirect('/users')
         //     ->with('success','Employee data saved');
         return response([
-            'code' => $this->successStatus,
+            'code' => 200,
             'message' => 'Success',
             'data' => $data
         ]);
@@ -110,38 +113,52 @@ class ApiUserController extends Controller
         //dd('logout');
         $request->user()->token()->revoke();
         return response([
-            'code' => $this->successStatus,
+            'code' => 200,
             'message' => 'Success',
             'data' => 'Successfully Logged Out'
         ]);
     }
 
-    public function details()
+    public function details($id)
     {
-        $user = auth()->user();
-        $data = [
-            'Name' => $user->name,
-            'E-Mail Address' => $user->email,
-            'Username' => $user->username,
-            'Phone Number' => $user->no_hp,
-            'Address' => $user->address,
-            'Cabang_ID' => $user->cabang_id,
-            'Role' => $user->role,
-        ];
-        return response([
-            'code' => $this->successStatus,
-            'message' => 'Success',
-            'data' => $data
-        ]);
+        $user = auth()->user()->find($id);
+        
+        if (!$user)
+        {
+            return response([
+                'code' => 404,
+                'message' => 'Error',
+                'data' => 'User not found'
+            ]);
+        }
+        else
+        {
+            $data = [
+                'ID' => $user->id,
+                'Name' => $user->name,
+                'E-Mail Address' => $user->email,
+                'Username' => $user->username,
+                'Phone Number' => $user->no_hp,
+                'Address' => $user->address,
+                'Cabang_ID' => $user->cabang_id,
+                'Role' => $user->role,
+            ];
+            return response([
+                'code' => 200,
+                'message' => 'Success',
+                'data' => $data
+            ]);
+        }
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $users = User::all();
         $data = [];
         foreach($users as $user)
         {
             $data[] = [
+                'ID' => $user->id,
                 'Name' => $user->name,
                 'E-Mail Address' => $user->email,
                 'Username' => $user->username,
@@ -152,9 +169,38 @@ class ApiUserController extends Controller
             ];
         }
         return response([
-            'code' => $this->successStatus,
+            'code' => 200,
             'message' => 'Success',
             'data' => $data
         ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = auth()->user()->find($id);
+        
+        if (!$user)
+        {
+            return response([
+                'code' => 404,
+                'message' => 'Error',
+                'data' => 'User not found'
+            ]);
+        }
+        else
+        {
+            $data = $user;
+            // $data = $request->except(['_token', '_method', 'password', 'role']);
+            // dd($data);
+            // $update = $data->fill($request->all())->save();
+
+        }
+        // if($request->get('password')!=''){
+        //     $data['password'] = bcrypt($request->get('password'));
+        // }
+
+        // if($request->get('role')!=''){
+        //     $data['role'] = $request->get('role');
+        // }
     }
 }
