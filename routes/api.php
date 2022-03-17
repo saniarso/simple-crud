@@ -18,19 +18,15 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('login', 'API\ApiUserController@login');
-Route::post('register', 'API\ApiUserController@register');
+Route::post('login', 'API\ApiAuthController@login');
+Route::post('register', 'API\ApiAuthController@register');
 Route::post('cabang', 'API\ApiCabangController@cabang');
 
 Route::group(['middleware' => 'auth:api'], function (){
-    Route::get('logout', 'API\ApiUserController@logout');
+    Route::get('logout', 'API\ApiAuthController@logout');
     
     // CRUD User
-    Route::post('details/{id}', 'API\ApiUserController@details');
-    Route::post('create', 'API\ApiUserController@create');
-    Route::get('users', 'API\ApiUserController@index');
-    Route::post('update', 'API\ApiUserController@update');
-    Route::delete('delete', 'API\ApiUserController@delete');
+    Route::resource('users', 'API\ApiUserController');
 
     // CUD User
     Route::post('create_cabang', 'API\ApiCabangController@create_cabang');
