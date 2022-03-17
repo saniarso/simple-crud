@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function (){
     
     // CRUD User
     Route::post('details/{id}', 'API\ApiUserController@details');
+    Route::post('create', 'API\ApiUserController@create');
     Route::get('users', 'API\ApiUserController@index');
     Route::post('update', 'API\ApiUserController@update');
     Route::delete('delete', 'API\ApiUserController@delete');

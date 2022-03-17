@@ -119,6 +119,61 @@ class ApiUserController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'username'=>'required',
+            'email'=>'required',
+            'password' => 'required',
+            'no_hp'=>'required',
+            'address'=>'required',
+            'role'=>'required'
+        ]);
+
+        $data = $request->except(['_token', '_method','cabang_id']);
+
+        $findUser = User::where(function ($q) use($request) {
+            $q->where('username', $request->get('username'))
+            ->orWhere('email', $request->get('email'));
+        })->where('deleted_at', null)->first();
+
+        if($findUser){
+            // return redirect()->back()
+            // ->with('error','Username or email already exist');
+            return response([
+                'code' => 400,
+                'message' => 'Error',
+                'data' => 'Username or email already exist'
+            ]);
+        }
+
+        if($request->get('cabang_id')!=''){
+            $data['cabang_id'] = $request->get('cabang_id');
+        }
+
+        // dd($data);
+        // User::create($request->all());
+        User::create($data);
+        $data = [
+            'Name' => $request->get('name'),
+            'E-Mail Address' => $request->get('email'),
+            'Username' => $request->get('username'),
+            'Phone Number' => $request->get('no_hp'),
+            'Address' => $request->get('address'),
+            'Cabang_ID' => $request->get('cabang_id'),
+            'Role' => $request->get('role'),
+        ];
+
+        // return redirect('/users')
+        //     ->with('success','Employee data saved');
+        return response([
+            'code' => 200,
+            'message' => 'Success',
+            'data' => $data
+        ]);
+    }
+
     public function details($id)
     {
         $user = auth()->user()->find($id);
