@@ -20,9 +20,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UsersController');
 Route::resource('cabang', 'CabangController');
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'verify' => true
+]);
 
-Auth::routes(['verify' => true]);
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
 Route::get('/pdf_cabang', 'CabangController@cetak_pdf')->name('pdf_cabang');
 

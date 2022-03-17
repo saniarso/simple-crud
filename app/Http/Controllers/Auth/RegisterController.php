@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Cabang;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -37,6 +38,13 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
+    public function showRegistrationForm()
+    {
+        $cabangs = Cabang::all();
+        return view('auth.register', compact('cabangs'));
+    }
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -56,7 +64,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->whereNull('deleted_at')],
             'password' => ['required', 'string', 'confirmed'],
             'no_hp' => ['required', 'string'],
-            'address' => ['required', 'string', 'max:255']
+            'address' => ['required', 'string', 'max:255'],
+            'cabang_id' => ['required']
         ]);
     }
 
@@ -75,7 +84,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'no_hp' => $data['no_hp'],
             'address' => $data['address'],
-            'role' => 2
+            'role' => 2,
+            'cabang_id' => $data['cabang_id'],
         ]);
     }
 }

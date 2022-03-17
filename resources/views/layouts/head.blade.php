@@ -29,7 +29,6 @@
         <script src="{{ asset('global_assets/js/plugins/ui/perfect_scrollbar.min.js') }}"></script>
         <script src="{{ asset('global_assets/js/demo_pages/layout_fixed_sidebar_custom.js') }}"></script>
 
-        @yield('js')
         <!-- /theme JS files -->
     @endif
 

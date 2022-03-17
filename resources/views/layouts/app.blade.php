@@ -21,7 +21,7 @@
         <div class="content-wrapper">
 
             @yield('content')
-
+            @yield('js')
             <!-- Footer -->
             @include('layouts.footer')
             <!-- /footer -->

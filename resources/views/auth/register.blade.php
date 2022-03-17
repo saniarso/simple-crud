@@ -10,6 +10,19 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="card mb-0">
                         <div class="card-body">
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
+                            @endif
                             <div class="text-center mb-3">
                                 <i
                                     class="icon-plus3 icon-2x text-success border-success border-3 rounded-round p-3 mb-3 mt-1"></i>
@@ -18,8 +31,8 @@
                             </div>
 
                             <div class="form-group form-group-feedback form-group-feedback-right">
-                                <input id="username" type="text" 
-                                    class="form-control @error('username') is-invalid @enderror" name="username" 
+                                <input id="username" type="text"
+                                    class="form-control @error('username') is-invalid @enderror" name="username"
                                     placeholder="Username" autofocus>
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -109,6 +122,16 @@
                             </div>
 
                             <div class="form-group">
+                                <div id="div-cabang" class="form-group">
+                                    <label for="cabang">Cabang</label>
+                                    <select name="cabang_id" class="form-control form-control-select2"
+                                        data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
+                                        require>
+                                        @foreach ($cabangs as $cabang)
+                                            <option value="{{ $cabang->id }}" > {{ $cabang->nama_cabang }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <button type="submit" class="btn bg-teal-400 btn-labeled btn-labeled-right"><b><i
                                             class="icon-plus3"></i></b> Register</button>
                             </div>

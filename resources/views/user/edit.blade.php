@@ -66,22 +66,20 @@
                             @if (in_array(Auth::user()->role, [1]))
                                 <div class="form-group">
                                     <label for="role">Role</label>
-                                    <select name="role" class="form-control form-control-select2"
+                                    <select id="dropdown-role" name="role" class="form-control form-control-select2"
                                         data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
                                         require>
-                                        <option value="" ></option>
                                         @foreach (config('custom.role') as $key => $value)
                                             <option {{ $user->role == $key ? 'selected' : '' }} value="{{ $key }}" > {{ $value }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div id="div-cabang" class="form-group">
                                     <label for="cabang">Cabang</label>
                                     <select name="cabang_id" class="form-control form-control-select2"
                                         data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
                                         require>
-                                        <option value="" ></option>
                                         @foreach ($cabangs as $cabang)
                                             <option {{ $user->cabang_id == $cabang->id ? 'selected' : '' }} value="{{ $cabang->id }}" > {{ $cabang->nama_cabang }}</option>
                                         @endforeach
@@ -108,4 +106,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $('#dropdown-role').ready(function () {
+            var dropdown=$('#dropdown-role option:selected').val()
+            if (dropdown==1) {
+                $('#div-cabang').hide()
+            } else {
+                $('#div-cabang').show()
+            }
+        }).on('change', function() {
+            var dropdown=$('#dropdown-role option:selected').val()
+            console.log(dropdown)
+            if (dropdown==1) {
+                $('#div-cabang').hide()
+            } else {
+                $('#div-cabang').show()
+            }
+        });
+    </script>
 @endsection

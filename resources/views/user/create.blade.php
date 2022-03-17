@@ -64,15 +64,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="role">Role</label>
-                                <select name="role" class="form-control form-control-select2"
+                                <select id="dropdown-role" name="role" class="form-control form-control-select2"
                                     data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
                                     required>
+                                    <option value="0">Pilih Role</option>
                                     @foreach (config('custom.role') as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div id="div-cabang" class="form-group" style="display:none">
                                 <label for="cabang">Cabang</label>
                                 <select name="cabang_id" class="form-control form-control-select2"
                                     data-container-css-class="border-teal" data-dropdown-css-class="border-teal"
@@ -90,4 +91,18 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $('#dropdown-role').on('change', function() {
+            var dropdown=$('#dropdown-role option:selected').val()
+            console.log(dropdown)
+            if (dropdown==1 || dropdown==0) {
+                $('#div-cabang').hide()
+            } else {
+                $('#div-cabang').show()
+            }
+        });
+    </script>
 @endsection
