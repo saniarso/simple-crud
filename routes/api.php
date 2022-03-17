@@ -28,7 +28,8 @@ Route::group(['middleware' => 'auth:api'], function (){
     // CRUD User
     Route::resource('users', 'API\ApiUserController');
 
-    // CUD User
+    // CRUD Cabang
+    Route::post('details_cabang/{id}', 'API\ApiCabangController@details_cabang');
     Route::post('create_cabang', 'API\ApiCabangController@create_cabang');
     Route::post('update_cabang', 'API\ApiCabangController@update_cabang');
     Route::delete('delete_cabang', 'API\ApiCabangController@delete_cabang');

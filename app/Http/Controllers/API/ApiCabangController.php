@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ApiCabangController extends Controller
 {
     public $successStatus = 200;
-    public $failedStatus = 401;
+    public $failedStatus = 404;
 
     public function cabang(Request $request)
     {
@@ -49,6 +49,32 @@ class ApiCabangController extends Controller
             'message' => 'Success',
             'data' => $data
         ]);
+    }
+
+    public function details_cabang($id)
+    {
+        $cabang = Cabang::find($id);
+
+        if (!$cabang)
+        {
+            return response([
+                'code' => 404,
+                'message' => 'Error',
+                'data' => 'Cabang not found'
+            ]);
+        }
+        else
+        {
+            $data = [
+                'ID' => $cabang->id,
+                'Name' => $cabang->nama_cabang,
+            ];
+            return response([
+                'code' => 200,
+                'message' => 'Success',
+                'data' => $data
+            ]);
+        }
     }
 
     public function update_cabang(Request $request, Cabang $cabang)
