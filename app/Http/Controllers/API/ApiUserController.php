@@ -175,32 +175,93 @@ class ApiUserController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = auth()->user()->find($id);
-        
-        if (!$user)
-        {
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+            'no_hp'=>'required',
+            'address'=>'required',
+        ]);
+
+        $data = $request->except(['_token', '_method','password','role','cabang_id']);
+
+        if($request->get('cabang_id')!=''){
+            $data['cabang_id'] = $request->get('cabang_id');
+        }
+
+        if($request->get('password')!=''){
+            $data['password'] = bcrypt($request->get('password'));
+        }
+
+        if($request->get('role')!=''){
+            $data['role'] = $request->get('role');
+        }
+
+        $user = User::find($request->get('id'));
+
+        if($user){
+            $user->update($data);
+            $data = [
+                'ID' => $request->get('id'),
+                'Name' => $request->get('name'),
+                'Username'=>$user->username,
+                'E-mail Adress'=>$user->email,
+                'Phone Number' => $request->get('no_hp'),
+                'Address' => $request->get('address'),
+                'ID Cabang' => $request->get('cabang_id'),
+                'Role' => $request->get('role'),
+            ];
+            // dd($data);
+
+            return response([
+                'code' => 200,
+                'message' => 'Success',
+                'data' => $data
+            ]);
+        }else {
             return response([
                 'code' => 404,
                 'message' => 'Error',
-                'data' => 'User not found'
+                'message' => 'ID tidak ditemukan!',
             ]);
         }
-        else
-        {
-            $data = $user;
-            // $data = $request->except(['_token', '_method', 'password', 'role']);
-            // dd($data);
-            // $update = $data->fill($request->all())->save();
+    }
+    
+    public function delete(Request $request)
+    {
+        $request->validate([
+            'id' => 'required'
+        ]);
 
+        $data = $request->except(['_token', '_method']);
+
+        $user = User::find($request->get('id'));
+
+        if($user){
+            User::destroy($request->get('id'));
+            $data = [
+                'ID' => $request->get('id'),
+                'Name' => $user->name,
+                'E-Mail Address' => $user->email,
+                'Username' => $user->username,
+                'Phone Number' => $user->no_hp,
+                'Address' => $user->address,
+                'Cabang_ID' => $user->cabang_id,
+                'Role' => $user->role,
+            ];
+
+            return response([
+                'code' => 200,
+                'message' => 'Success',
+                'data' => $data
+            ]);
+        }else {
+            return response([
+                'code' => 404,
+                'message' => 'Error',
+                'data' => 'ID tidak ditemukan'
+            ]);
         }
-        // if($request->get('password')!=''){
-        //     $data['password'] = bcrypt($request->get('password'));
-        // }
-
-        // if($request->get('role')!=''){
-        //     $data['role'] = $request->get('role');
-        // }
     }
 }

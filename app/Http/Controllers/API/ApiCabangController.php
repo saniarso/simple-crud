@@ -93,7 +93,7 @@ class ApiCabangController extends Controller
         $cabang = Cabang::find($request->get('id'));
 
         if($cabang){
-            Cabang ::destroy($request->get('id'));
+            Cabang::destroy($request->get('id'));
             $data = [
                 'Id Cabang' => $request->get('id'),
             ];

@@ -24,6 +24,14 @@ Route::post('cabang', 'API\ApiCabangController@cabang');
 
 Route::group(['middleware' => 'auth:api'], function (){
     Route::get('logout', 'API\ApiUserController@logout');
+    
+    // CRUD User
+    Route::post('details/{id}', 'API\ApiUserController@details');
+    Route::get('users', 'API\ApiUserController@index');
+    Route::post('update', 'API\ApiUserController@update');
+    Route::delete('delete', 'API\ApiUserController@delete');
+
+    // CUD User
     Route::post('create_cabang', 'API\ApiCabangController@create_cabang');
     Route::post('update_cabang', 'API\ApiCabangController@update_cabang');
     Route::delete('delete_cabang', 'API\ApiCabangController@delete_cabang');
