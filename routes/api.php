@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'API\ApiAuthController@login');
 Route::post('register', 'API\ApiAuthController@register');
-Route::post('cabang', 'API\ApiCabangController@cabang');
+Route::get('cabang', 'API\ApiCabangController@index');
 
 Route::group(['middleware' => 'auth:api'], function (){
     Route::get('logout', 'API\ApiAuthController@logout');
@@ -29,8 +29,9 @@ Route::group(['middleware' => 'auth:api'], function (){
     Route::resource('users', 'API\ApiUserController');
 
     // CRUD Cabang
-    Route::post('details_cabang/{id}', 'API\ApiCabangController@details_cabang');
-    Route::post('create_cabang', 'API\ApiCabangController@create_cabang');
-    Route::post('update_cabang', 'API\ApiCabangController@update_cabang');
-    Route::delete('delete_cabang', 'API\ApiCabangController@delete_cabang');
+    // Route::resource('cabang', 'API\ApiCabangController');
+    Route::get('cabang/{id}', 'API\ApiCabangController@show');
+    Route::post('cabang', 'API\ApiCabangController@store');
+    Route::put('cabang/{id}', 'API\ApiCabangController@update');
+    Route::delete('cabang/{id}', 'API\ApiCabangController@destroy');
 });
