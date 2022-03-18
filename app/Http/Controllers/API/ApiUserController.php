@@ -27,8 +27,8 @@ class ApiUserController extends Controller
                 'Username' => $user->username,
                 'Phone Number' => $user->no_hp,
                 'Address' => $user->address,
-                'Cabang_ID' => $user->cabang_id,
-                'Role' => $user->role,
+                'Cabang' => $user->cabang ? $user->cabang->nama_cabang : '-',
+                'Role' => config('custom.role.' .$user->role),
             ];
         }
         return response([
